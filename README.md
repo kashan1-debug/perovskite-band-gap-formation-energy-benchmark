@@ -118,7 +118,7 @@ Also see [`CITATION.cff`](CITATION.cff).
 
 ## Acknowledgements
 
-The author designed the study, ran all experiments in Google Colab, and verified all numbers. Muse (Meta's AI assistant) helped build and audit the code, run diagnostics, and draft the manuscript under the author's direction; this assistance is disclosed in the manuscript. The author takes full responsibility for the work.
+The author designed the study, ran all experiments in Google Collab, and verified all numbers. AI helped build and audit the code, run diagnostics, and draft the manuscript under the author's direction; this assistance is disclosed in the manuscript. The author takes full responsibility for the work.
 
 ## License
 
