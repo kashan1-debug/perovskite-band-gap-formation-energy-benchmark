@@ -114,7 +114,7 @@ Also see [`CITATION.cff`](CITATION.cff).
 
 ## Author
 
-**Muhammad Kashan Ali** — Department of Chemistry, Bahauddin Zakariya University, Multan, Pakistan.
+**Muhammad Kashan Ali** — Institute of Chemical Sciences, Bahauddin Zakariya University, Multan, Pakistan.
 
 ## Acknowledgements
 
