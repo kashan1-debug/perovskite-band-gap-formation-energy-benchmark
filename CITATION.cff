@@ -8,7 +8,7 @@ authors:
     affiliation: "Department of Chemistry, Bahauddin Zakariya University, Multan, Pakistan"
 version: 0.1.0
 date-released: 2026-11-27
-url: "https://github.com/kashan1-debug/perovskite-band-gap-stability-benchmark"
+url: "https://github.com/kashan1-debug/perovskite-band-gap-formation-energy-benchmark"
 license: MIT
 keywords:
   - perovskite

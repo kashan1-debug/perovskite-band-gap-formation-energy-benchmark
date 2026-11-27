@@ -106,7 +106,7 @@ Per the literature check in [`docs/literature_check.md`](docs/literature_check.m
                   Formation Energy and Band-Gap Prediction},
   year         = {2026},
   publisher    = {GitHub},
-  url          = {https://github.com/kashan1-debug/perovskite-band-gap-stability-benchmark}
+  url          = {https://github.com/kashan1-debug/perovskite-band-gap-formation-energy-benchmark}
 }
 ```
 
@@ -114,11 +114,11 @@ Also see [`CITATION.cff`](CITATION.cff).
 
 ## Author
 
-**Muhammad Kashan Ali** — Institute of Chemical Sciences, Bahauddin Zakariya University, Multan, Pakistan.
+**Muhammad Kashan Ali** — Department of Chemistry, Bahauddin Zakariya University, Multan, Pakistan.
 
 ## Acknowledgements
 
-The author designed the study, ran all experiments in Google Collab, and verified all numbers. AI helped build and audit the code, run diagnostics, and draft the manuscript under the author's direction; this assistance is disclosed in the manuscript. The author takes full responsibility for the work.
+The author designed the study, ran all experiments in Google Colab, and verified all numbers. Muse (Meta's AI assistant) helped build and audit the code, run diagnostics, and draft the manuscript under the author's direction; this assistance is disclosed in the manuscript. The author takes full responsibility for the work.
 
 ## License
 
