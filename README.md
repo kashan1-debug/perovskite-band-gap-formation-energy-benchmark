@@ -28,6 +28,36 @@ Uncertainty under element shift is metal-dependent. Split-conformal intervals (n
 
 Band-gap screening on the same grid is a cautionary tale: only 735 of 18,928 compounds have a non-zero DFT gap. A classifier reaches ROC-AUC 0.919, but at the usual 0.5 threshold it finds only ~7% of the non-metals. Lowering the threshold to ~0.2 gives the best F1 (0.528). Grouped regression on the 735 non-zero-gap compounds gives R² 0.558.
 
+## Figures
+
+**Figure 1 — Random vs grouped cross-validation (Magpie only).** The ceiling (dashed line, R² = 0.543) is the composition-degeneracy limit; no composition-only model can beat it on this grid.
+
+![Figure 1: random vs grouped CV](paper/figures/fig1_cv_r2.png)
+
+**Figure 2 — Leave-one-family-out R² by model.** Magpie-only models collapse on unseen B metals (pooled R² 0.086 for XGBoost); site-aware XGBoost reaches 0.733.
+
+![Figure 2: leave-one-family-out R²](paper/figures/fig2_familyout_r2.png)
+
+**Figure 3 — Parity plot, site-aware XGBoost.** Predicted vs true formation energy on held-out B metals.
+
+![Figure 3: parity plot](paper/figures/fig3_parity_xgb.png)
+
+**Figure 4 — Distributions.** Formation energy and band gap across the 18,928-compound grid.
+
+![Figure 4: distributions](paper/figures/fig4_distributions.png)
+
+**Figure 5 — Band-gap screening and conformal coverage.** The classifier's trade-off and the metal-dependent conformal coverage (W falls to 0.690).
+
+![Figure 5: band-gap and conformal](paper/figures/fig5_bandgap_conformal.png)
+
+**Figure 6 — SHAP feature importance (random split).** Site-aware features dominate the top 10; the tolerance factor and octahedral factor are both in the top 20.
+
+![Figure 6: SHAP importance](paper/figures/shap_importance.png)
+
+**Figure 7 — SHAP under family shift.** Held-out Te, W and Mg: what the model leans on changes with the metal — B-site physics leads only for W.
+
+![Figure 7: SHAP under family shift](paper/figures/shap_familyout.png)
+
 ## Dataset
 
 - **Source:** Castelli perovskites via [matminer](https://hackingmaterials.lbl.gov/matminer/) (`matminer.datasets.load_dataset("castelli_perovskites")`), 18,928 rows. The dataset is a complete factorial grid: every B metal appears in exactly 364 compounds, every X anion in exactly 2,704.
