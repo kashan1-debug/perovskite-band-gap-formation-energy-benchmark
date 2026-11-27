@@ -1,0 +1,20 @@
+# Large generated data — regenerate with code/02 and code/08, or fetch as described in data/README.md
+*.parquet
+*.h5
+*.pkl
+*.joblib
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Notebooks and editors
+.ipynb_checkpoints/
+.DS_Store
+
+# Local Colab / Drive artefacts
+test_save.txt

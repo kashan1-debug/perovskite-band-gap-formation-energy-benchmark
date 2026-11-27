@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+type: software
+title: "Benchmarking the Generalization and Extrapolation Limits of Composition-Based Machine Learning Models for Perovskite Formation Energy and Band-Gap Prediction"
+authors:
+  - family-names: Ali
+    given-names: Muhammad Kashan
+    affiliation: "Department of Chemistry, Bahauddin Zakariya University, Multan, Pakistan"
+version: 0.1.0
+date-released: 2026-11-27
+url: "https://github.com/kashan1-debug/perovskite-band-gap-stability-benchmark"
+license: MIT
+keywords:
+  - perovskite
+  - machine learning
+  - materials informatics
+  - extrapolation
+  - conformal prediction
+  - SHAP
+  - MEGNet

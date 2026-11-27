@@ -1,0 +1,98 @@
+PEROVSKITE COLAB — SETUP ONLY, PLAIN PYTHON (no file upload needed)
+
+Use this if uploading the .ipynb file is giving trouble.
+Do NOT paste the .ipynb file into a cell — that file is JSON, not Python,
+and Python does not know the word 'null'. That is the error you saw.
+
+Steps:
+1. Go to colab.research.google.com
+2. File -> New notebook (a blank notebook).
+3. Paste SETUP A below into the first cell, press Shift+Enter, wait for it to finish.
+4. Click '+ Code' to add a new cell, paste SETUP B, Shift+Enter.
+5. Click '+ Code' again, paste SETUP C, Shift+Enter.
+6. After SETUP A finishes: Runtime -> Restart runtime, then run SETUP B and C only.
+   Do NOT run SETUP A again after the restart — it would undo the requests pin.
+7. Then open the full notebook (perovskite_colab_v3.ipynb) for the rest,
+   or tell Muse what SETUP B printed and what you saw in Drive, and Muse will
+   give you the next cells one by one as plain Python to paste.
+
+What you should see:
+- SETUP B prints: sklearn 1.6.1, xgboost 3.4.1, matminer 0.10.1, pymatgen version,
+  then SrTiO3, elements Sr/Ti/O, and 'Magpie featuriser ready'.
+- SETUP C prints OUT_DIR = /content/drive/MyDrive/perovskite/results and
+  'read back: If you can read this, Drive saving works.'
+  Check in Google Drive -> perovskite/results -> test_save.txt is there.
+
+======================================================================
+SETUP A — install the libraries
+======================================================================
+# SETUP A — Install the libraries. Run once per Colab runtime.
+# -q = quiet, no long log. This takes 2-4 minutes the first time.
+# matminer  = datasets + composition/structure featurisers
+# pymatgen  = crystal Structure / Composition objects
+# xgboost   = XGBoost model
+# scikit-learn = Ridge, Random Forest, cross-validation, metrics
+# shap      = SHAP importance (optional, for the last figure)
+!pip install -q matminer pymatgen xgboost scikit-learn shap pandas numpy matplotlib
+# FIX for the google-colab / requests conflict:
+# matminer upgrades requests to 2.34.2, but google-colab 1.0.0 needs requests==2.32.4.
+# Downgrade it back AFTER the install above, then RESTART the runtime
+# (Runtime -> Restart runtime) and do NOT run Setup A again.
+!pip install -q requests==2.32.4
+print('SETUP A done — libraries installed, requests pinned to 2.32.4')
+print('NOW: Runtime -> Restart runtime, then run Setup B. Do not re-run Setup A.')
+
+======================================================================
+SETUP B — import the crystal model and test it
+======================================================================
+# SETUP B — Import everything and TEST that the crystal model works.
+# If any import fails here, STOP. Do not run later cells — fix the install first.
+import sklearn, xgboost, matminer, pymatgen
+import numpy as np, pandas as pd
+print('sklearn:', sklearn.__version__)
+print('xgboost:', xgboost.__version__)
+print('matminer:', matminer.__version__)
+# pymatgen has no __version__ in newer versions — use importlib.metadata instead
+from importlib.metadata import version as _pkg_version
+print('pymatgen:', _pkg_version('pymatgen'))
+
+# The crystal model — 3 imports you will use everywhere:
+from pymatgen.core import Structure, Composition, Element
+from matminer.datasets import load_dataset
+from matminer.featurizers.composition import ElementProperty
+
+# TEST 1: a perovskite formula as a Composition object
+comp = Composition('SrTiO3')
+print('\nTEST 1 — Composition SrTiO3:', comp)
+print('elements:', [str(e) for e in comp.elements])
+print('amounts:', {str(e): float(comp[e]) for e in comp.elements})
+print('Sr is A-site, Ti is B-site, O is X-site. That is ABX3.')
+
+# TEST 2: Magpie featuriser exists and can be created
+feat = ElementProperty.from_preset('magpie')
+print('\nTEST 2 — Magpie featuriser ready:', type(feat).__name__)
+print('SETUP B done — if you see SrTiO3 above, the crystal model works.')
+
+======================================================================
+SETUP C — mount Drive and make the results folder
+======================================================================
+# SETUP C — Mount Drive and make the RESULTS folder. This is where every result is saved.
+from google.colab import drive
+drive.mount('/content/drive')   # a pop-up will ask you to allow access — click Allow, copy the code if asked
+
+from pathlib import Path
+OUT_DIR = Path('/content/drive/MyDrive/perovskite/results')
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+(OUT_DIR / '.cache').mkdir(exist_ok=True)
+print('OUT_DIR =', OUT_DIR)
+
+# TEST 3: write a tiny file to Drive and read it back. This proves saving works BEFORE a 1-hour run.
+test_file = OUT_DIR / 'test_save.txt'
+test_file.write_text('If you can read this, Drive saving works.\n')
+print('test file written:', test_file)
+print('read back:', test_file.read_text().strip())
+print('\nFiles already in results folder:')
+for f in sorted(OUT_DIR.iterdir()):
+    print(' ', f.name)
+print('\nSETUP C done — from now on, every CSV / PNG / parquet in this notebook goes to OUT_DIR.')
+print('When the runtime dies, reopen Colab, run SETUP B and C only (NOT A), and your old results are still on Drive.')
