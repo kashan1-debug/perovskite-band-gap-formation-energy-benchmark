@@ -1,0 +1,18 @@
+fermi level
+fermi width
+e_form
+gap is direct
+mu_b
+formula
+vbm
+cbm
+band_gap
+nsites
+e_form_per_atom
+formula_ordered
+formula_reduced
+composition_group
+A_site
+B_site
+X_anion
+A_family
